@@ -14,10 +14,10 @@ class WOT_KILLER_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
 	
-public:
-	ATank* GetControlledTank() const;
+private:
 
 	void BeginPlay() override;
-	
+	ATank* GetPlayerTank() const;
+
 	
 };
