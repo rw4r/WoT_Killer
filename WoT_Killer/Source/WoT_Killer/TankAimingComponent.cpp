@@ -38,8 +38,43 @@ void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, 
 	// ...
 }
 
+//Projectile Calculation using UGameplayStatics::SuggestProjectileVelocity
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Firing with a speed of %f m/s"), LaunchSpeed);
+	if (!Barrel) { return; } //protect pointer
+
+	FVector OutLaunchVelocity;
+	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile")); //find location of a socket named Projectile attached to Barrel
+
+	bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity(   //calc outlaunchvelocity
+		this,
+		OutLaunchVelocity,
+		StartLocation,
+		HitLocation,
+		LaunchSpeed,
+		false,
+		0,
+		0,
+		ESuggestProjVelocityTraceOption::DoNotTrace
+	);
+
+	if (bHaveAimSolution)
+	{
+		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
+		auto TankName = GetOwner()->GetName();
+		UE_LOG(LogTemp, Warning, TEXT("%s Aiming at %s"),*TankName, *AimDirection.ToString());
+		//get traverse arc
+		//get elevation arc
+		//traverse turret
+		//elevate/depress barrel
+		AimBarrel(AimDirection);
+	}
 }
 
+void UTankAimingComponent::AimBarrel(FVector AimDirection)
+{
+	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
+	auto AimAsRotator = AimDirection.Rotation();
+	auto DeltaRotator = AimAsRotator - BarrelRotator;
+	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *DeltaRotator.ToString());
+}
