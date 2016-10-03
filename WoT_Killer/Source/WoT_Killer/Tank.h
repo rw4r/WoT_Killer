@@ -7,6 +7,8 @@
 #include "Tank.generated.h"	//paste new classes above
 
 
+class UTankBarrel;
+
 UCLASS()
 class WOT_KILLER_API ATank : public APawn
 {
@@ -17,7 +19,7 @@ public:
 	void AimAt(FVector HitLocation);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 protected:
 

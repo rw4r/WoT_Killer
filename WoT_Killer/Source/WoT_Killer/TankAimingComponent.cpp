@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "WoT_Killer.h"
+#include "TankBarrel.h"
 #include "TankAimingComponent.h"
 
 
@@ -25,7 +26,7 @@ void UTankAimingComponent::BeginPlay()
 	
 }
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -77,4 +78,6 @@ void UTankAimingComponent::AimBarrel(FVector AimDirection)
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *DeltaRotator.ToString());
+
+	Barrel->Elevate(5);
 }

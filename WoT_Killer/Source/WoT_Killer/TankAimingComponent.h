@@ -6,6 +6,8 @@
 #include "TankAimingComponent.generated.h"
 
 
+class UTankBarrel; //Forward Declaration
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class WOT_KILLER_API UTankAimingComponent : public UActorComponent
 {
@@ -15,7 +17,7 @@ public:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 
 	// Called when the game starts
@@ -28,7 +30,7 @@ public:
 
 private:
 
-	UStaticMeshComponent* Barrel = nullptr;
+	UTankBarrel* Barrel = nullptr;
 
 	void AimBarrel(FVector AimDirection);
 	
