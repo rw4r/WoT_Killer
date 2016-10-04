@@ -8,7 +8,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(meta = (BlueprintSpawnableComponent))
 class WOT_KILLER_API UTankBarrel : public UStaticMeshComponent
 {
 	GENERATED_BODY()
@@ -20,7 +20,14 @@ public:
 
 private:
 	
-	UPROPERTY(EditAnywhere)
-	float MaxDegPerSecond = 20;
+	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0", ClampMax = "45", UIMin = "0", UIMax = "45"))
+		float MaxDegPerSecond = 30;
+
+	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0", ClampMax = "45", UIMin = "0", UIMax = "45"))
+		float MaxElevation = 30;
+
+	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0", ClampMax = "45", UIMin = "0", UIMax = "45"))
+		float MaxDepression = 15;
+
 	
 };
