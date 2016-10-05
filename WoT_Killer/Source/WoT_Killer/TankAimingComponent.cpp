@@ -12,7 +12,7 @@ UTankAimingComponent::UTankAimingComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	bWantsBeginPlay = true;
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 
 	// ...
 }
@@ -39,13 +39,6 @@ void UTankAimingComponent::SetTurretReference(UTurret* TurretToSet)
 	Turret = TurretToSet;
 }
 
-// Called every frame
-void UTankAimingComponent::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
-{
-	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
-
-	// ...
-}
 
 //Projectile Calculation using UGameplayStatics::SuggestProjectileVelocity
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
@@ -72,7 +65,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		auto TankName = GetOwner()->GetName();
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f: Aim Solution Found. %f"), Time);
+		UE_LOG(LogTemp, Warning, TEXT("%f: Aim Solution found."), Time);
 		//get traverse arc
 		//get elevation arc
 		//traverse turret
@@ -91,8 +84,7 @@ void UTankAimingComponent::AimBarrel(FVector AimDirection)
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
-	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *DeltaRotator.ToString());
 
 	Barrel->Elevate(DeltaRotator.Pitch);
-	//Barrel->Traverse(DeltaRotator.Yaw);
+	Turret->Traverse(DeltaRotator.Yaw);
 }
