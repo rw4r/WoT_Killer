@@ -2,6 +2,7 @@
 
 #include "WoT_Killer.h"
 #include "TankBarrel.h"
+#include "Turret.h"
 #include "TankAimingComponent.h"
 
 
@@ -28,7 +29,14 @@ void UTankAimingComponent::BeginPlay()
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
+	if (!BarrelToSet) { return; }
 	Barrel = BarrelToSet;
+}
+
+void UTankAimingComponent::SetTurretReference(UTurret* TurretToSet)
+{
+	if (!TurretToSet) { return; }
+	Turret = TurretToSet;
 }
 
 // Called every frame
@@ -86,4 +94,5 @@ void UTankAimingComponent::AimBarrel(FVector AimDirection)
 	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *DeltaRotator.ToString());
 
 	Barrel->Elevate(DeltaRotator.Pitch);
+	//Barrel->Traverse(DeltaRotator.Yaw);
 }
