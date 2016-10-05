@@ -2,12 +2,12 @@
 
 #pragma once
 
-#include "TankAimingComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"	//paste new classes above
 
 
 class UTankBarrel;
+class UTankAimingComponent;
 
 UCLASS()
 class WOT_KILLER_API ATank : public APawn

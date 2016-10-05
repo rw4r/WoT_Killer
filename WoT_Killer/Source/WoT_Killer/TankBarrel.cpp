@@ -8,5 +8,5 @@
 
 void UTankBarrel::Elevate(float DegPerSecond)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Barrel-Elevate Called at %f"), DegPerSecond);
+
 }
