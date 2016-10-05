@@ -26,8 +26,8 @@ private:
 	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0", ClampMax = "45", UIMin = "0", UIMax = "45"))
 		float MaxElevation = 30;
 
-	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0", ClampMax = "45", UIMin = "0", UIMax = "45"))
-		float MaxDepression = 15;
+	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "-30", ClampMax = "0", UIMin = "-30", UIMax = "0"))
+		float MaxDepression = -15;
 
 	
 };
