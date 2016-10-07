@@ -19,7 +19,7 @@ public:
 		void SetThrottle(float Throttle);
 	
 	//In Newtons
-	UPROPERTY(EditDefaultsOnly, Category = Setup, meta = (ClampMin = "0", ClampMax = "900000", UIMin = "0", UIMax = "900000"))
+	UPROPERTY(EditDefaultsOnly, Category = Setup, meta = (ClampMin = "0", ClampMax = "999999999999", UIMin = "0", UIMax = "999999999999"))
 		float TrackMaxDrivingForce = 400000;
 	
 };
