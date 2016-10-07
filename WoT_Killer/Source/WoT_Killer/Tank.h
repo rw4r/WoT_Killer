@@ -48,7 +48,7 @@ private:
 		float LaunchSpeed = 100000; 
 
 	//Reload Time
-	UPROPERTY(EditAnywhere, Category = Firing, meta = (ClampMin = "0", ClampMax = "720", UIMin = "0", UIMax = "720"))
+	UPROPERTY(EditDefaultsOnly, Category = Firing, meta = (ClampMin = "0", ClampMax = "720", UIMin = "0", UIMax = "720"))
 		float ReloadTime = 5;
 
 	UPROPERTY(EditAnywhere, Category = Setup)
