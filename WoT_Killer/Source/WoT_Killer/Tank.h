@@ -47,11 +47,16 @@ private:
 	UPROPERTY(EditAnywhere, Category = Firing, meta = (ClampMin = "0", ClampMax = "1000000", UIMin = "0", UIMax = "1000000"))
 		float LaunchSpeed = 100000; 
 
+	//Reload Time
+	UPROPERTY(EditAnywhere, Category = Firing, meta = (ClampMin = "0", ClampMax = "720", UIMin = "0", UIMax = "720"))
+		float ReloadTime = 5;
+
 	UPROPERTY(EditAnywhere, Category = Setup)
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	//Local Barrel reference for spawning projectile
 	UTankBarrel* Barrel = nullptr;
-	
-	
+
+	double LastFireTime = 0;
+
 };
