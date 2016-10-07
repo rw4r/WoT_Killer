@@ -9,6 +9,7 @@
 class UTankBarrel;
 class UTankAimingComponent;
 class UTurret;
+class AProjectile;
 
 UCLASS()
 class WOT_KILLER_API ATank : public APawn
@@ -42,8 +43,15 @@ private:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 100000; //1000m/s projectile speed
+	//Projectile Speed
+	UPROPERTY(EditAnywhere, Category = Firing, meta = (ClampMin = "0", ClampMax = "1000000", UIMin = "0", UIMax = "1000000"))
+		float LaunchSpeed = 100000; 
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+		TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	//Local Barrel reference for spawning projectile
+	UTankBarrel* Barrel = nullptr;
 	
 	
 };
