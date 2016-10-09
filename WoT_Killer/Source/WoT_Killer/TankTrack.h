@@ -15,7 +15,7 @@ class WOT_KILLER_API UTankTrack : public UStaticMeshComponent
 	
 public:
 
-	UFUNCTION(BlueprintCallable, Category = Input)
+	UFUNCTION(BlueprintCallable, Category = "Input")
 		void SetThrottle(float Throttle);
 	
 	//In Newtons

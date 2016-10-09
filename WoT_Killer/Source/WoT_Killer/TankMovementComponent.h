@@ -19,22 +19,22 @@ class WOT_KILLER_API UTankMovementComponent : public UNavMovementComponent
 	
 public:
 
-	UFUNCTION(BlueprintCallable, Category = Input)
+	UFUNCTION(BlueprintCallable, Category = "Input")
 		void IntendAccelerate(float Throw);
-	UFUNCTION(BlueprintCallable, Category = Setup)
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 		void Initialize(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet);
 
 	//void IntendReverse(float Throw);
-	UFUNCTION(BlueprintCallable, Category = Input)
+	UFUNCTION(BlueprintCallable, Category = "Input")
 		void IntendTurnRight(float Throw);
-	UFUNCTION(BlueprintCallable, Category = Input)
+	UFUNCTION(BlueprintCallable, Category = "Input")
 		void IntendTurnLeft(float Throw);
 
-	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
+
 	
 private:
 
-
+	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
 	UTankTrack* LeftTrack = nullptr;
 	UTankTrack* RightTrack = nullptr;
 };
