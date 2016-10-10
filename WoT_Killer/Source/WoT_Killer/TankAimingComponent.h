@@ -45,6 +45,8 @@ private:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
 	UTankBarrel* Barrel = nullptr;
 	UTurret* Turret = nullptr;
 
@@ -62,6 +64,10 @@ private:
 		float LaunchSpeed = 100000;
 
 	double LastFireTime = 0;
+
+	bool IsBarrelMoving();
+
+	FVector AimDirection;
 };
 
 
