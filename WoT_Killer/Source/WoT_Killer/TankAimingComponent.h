@@ -35,7 +35,7 @@ public:
 
 	virtual void BeginPlay() override;
 	
-	void AimAt(FVector HitLocation, float LaunchSpeed);
+	void AimAt(FVector HitLocation);
 
 private:
 	// Sets default values for this component's properties
@@ -45,5 +45,9 @@ private:
 	UTurret* Turret = nullptr;
 
 	void AimBarrel(FVector AimDirection);
+
+	//Projectile Speed
+	UPROPERTY(EditAnywhere, Category = Firing, meta = (ClampMin = "0", ClampMax = "1000000", UIMin = "0", UIMax = "1000000"))
+		float LaunchSpeed = 100000;
 	
 };

@@ -7,8 +7,6 @@
 
 
 class UTankBarrel;
-class UTankAimingComponent;
-class UTankMovementComponent;
 class UTurret;
 class AProjectile;
 
@@ -19,27 +17,18 @@ class WOT_KILLER_API ATank : public APawn
 
 public:
 
-	void AimAt(FVector HitLocation);
-
 
 	UFUNCTION(BlueprintCallable, Category = "Fire Control")
 		void Fire();
 
 protected:
 
-	UPROPERTY(BlueprintReadOnly)
-	UTankAimingComponent* TankAimingComponent = nullptr;
+	virtual void BeginPlay() override;
 
-	UPROPERTY(BlueprintReadOnly)
-	UTankMovementComponent* TankMovementComponent = nullptr;
 
 private:
 	// Sets default values for this pawn's properties
 	ATank();
-
-	//Projectile Speed
-	UPROPERTY(EditAnywhere, Category = Firing, meta = (ClampMin = "0", ClampMax = "1000000", UIMin = "0", UIMax = "1000000"))
-		float LaunchSpeed = 100000; 
 
 	//Reload Time
 	UPROPERTY(EditDefaultsOnly, Category = Firing, meta = (ClampMin = "0", ClampMax = "720", UIMin = "0", UIMax = "720"))
@@ -47,6 +36,10 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 		TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	//Projectile Speed
+	UPROPERTY(EditAnywhere, Category = Firing, meta = (ClampMin = "0", ClampMax = "1000000", UIMin = "0", UIMax = "1000000"))
+		float LaunchSpeed = 100000;
 
 	double LastFireTime = 0;
 

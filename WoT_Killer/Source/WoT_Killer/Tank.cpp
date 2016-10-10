@@ -3,8 +3,6 @@
 #include "WoT_Killer.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
-#include "TankAimingComponent.h"
-#include "TankMovementComponent.h"
 #include "Tank.h"
 
 
@@ -15,17 +13,17 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void ATank::AimAt(FVector HitLocation)
+void ATank::BeginPlay()
 {
-	if (!TankAimingComponent) { return; }
-	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
+	Super::BeginPlay();
 }
 
 void ATank::Fire()
 {
+	if (!ensure(Barrel)) { return; }
 	bool IsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTime;
 
-	if (Barrel && IsReloaded)
+	if (IsReloaded)
 	{
 		//Spawn projectile at tip of the barrel
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
